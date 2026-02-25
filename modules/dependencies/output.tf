@@ -5,7 +5,6 @@ output "dependencies_ready"{
     depends_on = [
         null_resource.check_docker,
         null_resource.check_kubectl,
-        null_resource.check_kustomize,
         null_resource.check_kind,
         null_resource.check_helm
     ]
@@ -16,7 +15,6 @@ output "installed_tools" {
     value = {
         docker = "Docker"
         kubectl = "Kubectl"
-        kustomize = "Kustomize"
         kind = "Kind"
         helm = "Helm"
     }
@@ -24,7 +22,6 @@ output "installed_tools" {
     depends_on = [
         null_resource.check_docker,
         null_resource.check_kubectl,
-        null_resource.check_kustomize,
         null_resource.check_kind,
         null_resource.check_helm
     ]

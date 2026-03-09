@@ -2,8 +2,7 @@ output "nvidia_status" {
   description = "Status da GPU NVIDIA"
   value       = "Verificação de GPU NVIDIA concluída"
   
-  depends_on = [null_resource.check_nvidia]
-  depends_on = [null_resource.check_nvidia_toolkit]
+  depends_on = [null_resource.check_nvidia, null_resource.check_nvidia_toolkit]
 }
 
 output "installed" {

@@ -5,13 +5,13 @@ module "dependencies" {
 module "gpu" {
   source = "./modules/gpu"
 
-  depends_on = [modules.dependencies]
+  depends_on = [module.dependencies]
 }
 
 module "cluster" {
   source = "./modules/cluster"
 
-  depends_on = [modules.gpu]
+  depends_on = [module.gpu]
 
-    cluster_name = var.kubeflow
+  kubeflow = var.kubeflow
 }

@@ -166,3 +166,83 @@ Desta vez é tulizado **dois** provisioners um faz a criação do cluster e o ú
 
 #### `modules/kubeflow/`
 ...
+
+# Quick Start
+#### Instalação Terraform
+**1.** Instalação das dependências
+```bash
+sudo apt-get update && sudo apt-get install -y gnupg software-properties-common
+```
+
+**2.** Instalar chave GPG da HashiCorp
+```bash
+wget -O- https://apt.releases.hashicorp.com/gpg | \
+gpg --dearmor | \
+sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg
+```
+
+**3.** Verificar Impressão Digitall da chave
+```bash
+gpg --no-default-keyring \
+--keyring /usr/share/keyrings/hashicorp-archive-keyring.gpg \
+--fingerprint
+```
+
+**4.** Adicione o Rep HashiCorp
+```bash
+echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] \
+https://apt.releases.hashicorp.com $(lsb_release -cs) main" | \
+sudo tee /etc/apt/sources.list.d/hashicorp.list
+```
+
+**5.** Baixar Informações dos pacotes
+```bash
+sudo apt update
+```
+
+**6.** Instalar o Terraform
+```bash
+sudo apt-get install terraform
+```
+
+**7.** Verificar Instalação
+```bash
+terraform --help
+terraform --version
+```
+
+Mais Informações acesse a documentação do terraform: [Terraform Docs](https://developer.hashicorp.com/terraform/install#linux)
+
+#### Iniciar projeto
+**1.** Iniciar Terraform: realizar downloads e instala os providers definidos
+```bash
+terraform init
+```
+
+**2.** Formatar e validar configuração: atualizar automáticamente as configurações do diretório
+```bash
+terraform fmt
+```
+
+**3.** Validar a configuração
+```bash
+terraform validate
+```
+
+**4.** Criar infraestrutura
+```bash
+terraform apply
+```
+
+Terraform vai esperar um momento e pedir sua aprovação. Caso realmente o plano seja aceitável digite `yes`
+```bash
+Enter a value: yes
+
+docker_image.nginx: Creating...
+docker_image.nginx: Still creating... [10s elapsed]
+docker_image.nginx: Creation complete after 13s [id=sha256:d1a364dc548d5357f0da3268c888e1971bbdb957ee3f028fe7194f1d61c6fdeenginx:latest]
+docker_container.nginx: Creating...
+docker_container.nginx: Creation complete after 2s [id=2834ad6283372ceb61121739ce71d31cb0237ad50f4dc234e3445c9445439181]
+
+Apply complete! Resources: 2 added, 0 changed, 0 destroyed.
+```
